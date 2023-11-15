@@ -41,7 +41,7 @@ app.get('/welcome', (req, res) => {
 app.post('/login', async (req, res) => {
   
   try {
-    // console.log(req.body);
+    console.log(req.body);
     const { username, password } = req.body;
 
     const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
@@ -54,10 +54,10 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ status: 'error', message: 'Incorrect username or password' });
     }
 
-    req.session.user = user;
-    req.session.save();
+    // req.session.user = user;
+    // req.session.save();
 
-    res.redirect('/discover');
+    return res.status(200).json({ status: 'success', message: 'Successfully Logged In'});
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
