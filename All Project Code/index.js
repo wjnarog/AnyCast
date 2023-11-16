@@ -73,8 +73,8 @@ app.post('/register', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    const query = 'INSERT INTO users (username, password) VALUES ($1, $2)';
-    const values = [req.body.username, hashedPassword];
+    const query = 'INSERT INTO users (username, email, password) VALUES ($1, $2, $3)';
+    const values = [req.body.username, req.body.email, hashedPassword];
 
     console.log('Before database query');
     await db.query(query, values);
