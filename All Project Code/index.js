@@ -54,8 +54,8 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ status: 'error', message: 'Incorrect username or password' });
     }
 
-    // req.session.user = user;
-    // req.session.save();
+    req.session.user = user;
+    req.session.save();
 
     return res.status(200).json({ status: 'success', message: 'Successfully Logged In'});
   } catch (error) {
@@ -80,7 +80,7 @@ app.post('/register', async (req, res) => {
     await db.query(query, values);
     console.log('After database query, ', values);
 
-    res.json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
+    res.status(200).json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
   } catch (error) {
     res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
   }
