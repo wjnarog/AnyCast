@@ -82,8 +82,10 @@ app.post('/register', async (req, res) => {
     await db.query(query, values);
     console.log('After database query, ', values);
 
+
     res.status(200).json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
   } catch (error) {
+    console.error(error);
     res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
   }
 });
