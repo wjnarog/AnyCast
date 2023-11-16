@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
+//const bcrypt = require('bcrypt');
 //require('dotenv').config();
 
 const dbConfig = {
@@ -57,7 +58,8 @@ app.post('/login', async (req, res) => {
     req.session.user = user;
     req.session.save();
 
-    res.redirect('/discover');
+    //res.redirect('');
+    return res.status(200)
   } catch (error) {
     console.error(error);
     res.status(500).json({status: 'error', message: 'Internal Server Error'});
