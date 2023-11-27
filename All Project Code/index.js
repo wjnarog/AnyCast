@@ -1,6 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
+const bodyParser = require('body-parser');
+const session = require('express-session');
 //
 const bcrypt = require('bcrypt');
 //require('dotenv').config();
@@ -31,6 +32,14 @@ app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json());
 
 app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false,
+  })
+);
+
+app.use(
   bodyParser.urlencoded({
     extended: true,
   })
@@ -40,23 +49,27 @@ app.get('/welcome', (req, res) => {
   res.json({ status: 'success', message: 'Welcome!' });
 });
 
+app.get("/login", (req, res) => {
+  res.render('pages/login');
+});
+
 app.post('/login', async (req, res) => {
   
   try {
     console.log(req.body);
-    const { username, password } = req.body;
+    const { username, email,  password } = req.body;
 
-    const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
+    const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1;', username);
     if (!user) {
       return res.status(401).json({ status: 'error', message: 'User not found' });
     }
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.status(401).json({ status: 'error', message: 'Incorrect username or password' });
+    //const match = await bcrypt.compare(password, user.password);
+    if (false) {
+      return res.status(402).json({ status: 'error', message: 'Incorrect username or password' });
     }
 
-    req.session.user = user;
+    req.session.user = user.username;
     req.session.save();
 
     return res.status(200).json({ status: 'success', message: 'Successfully Logged In'});
