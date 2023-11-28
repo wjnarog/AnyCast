@@ -27,7 +27,7 @@ describe('Server!', () => {
   // ===========================================================================
   // TO-DO: Part A Login unit test case
   //We are checking POST /add_user API by passing the user info in the correct order. This test case should pass and return a status 200 along with a "Success" message.
-
+  
   //Positive case Login
   it('Positive : /login', done => {
     chai
@@ -42,7 +42,7 @@ describe('Server!', () => {
       });
       done();
   });
-
+  
   //Negative Case Login
   //We are checking POST /add_user API by passing the user info in in incorrect manner (name cannot be an integer). This test case should pass and return a status 200 along with a "Invalid input" message.
   it('Negative: /login. Checking invalid name', (done) => {
@@ -59,8 +59,6 @@ describe('Server!', () => {
       });
       done();
     }); 
-
-
 
     it('Positive: /register', (done) => {
       chai

@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
+//
+const bcrypt = require('bcrypt');
+const path = require('path');
+const app = express();
 //require('dotenv').config();
 
 const dbConfig = {
@@ -21,10 +25,10 @@ db.connect()
   })
   .catch(error => {
     console.log('ERROR:', error.message || error);
-  });
+});
 
-const app = express();
-
+app.set('views', path.join(__dirname, 'src', 'views'));
+app.use('/resources', express.static(path.join(__dirname, 'src', 'resources')));
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json());
 
@@ -33,6 +37,14 @@ app.use(
     extended: true,
   })
 );
+
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
+app.get('/home', (req, res) => {
+  res.render('pages/button_test');
+});
 
 app.get('/welcome', (req, res) => {
   res.json({ status: 'success', message: 'Welcome!' });
@@ -80,8 +92,10 @@ app.post('/register', async (req, res) => {
     await db.query(query, values);
     console.log('After database query, ', values);
 
+
     res.status(200).json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
   } catch (error) {
+    console.error(error);
     res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
   }
 });
