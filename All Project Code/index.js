@@ -50,7 +50,7 @@ app.get('/welcome', (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render('pages/login');
+  res.render('src/views/pages/login');
 });
 
 app.post('/login', async (req, res) => {
@@ -64,8 +64,8 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ status: 'error', message: 'User not found' });
     }
 
-    //const match = await bcrypt.compare(password, user.password);
-    if (false) {
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
       return res.status(402).json({ status: 'error', message: 'Incorrect username or password' });
     }
 
