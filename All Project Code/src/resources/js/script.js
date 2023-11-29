@@ -2,6 +2,8 @@
 // <!-- Randomizer Button -->
 // *****************************************************
 
+let weatherData = null;
+
 //when button is pressed, call the following function
 document.getElementById('generate').addEventListener('click', function() {
     generateLandCoordinates();
@@ -13,17 +15,23 @@ async function generateLandCoordinates() {
 
     try {
         let isLand = await isOnLand(coordinates.lat, coordinates.lng);
-        while (!isLand) {
+        while (!isLand || weatherData === undefined) {
+            if (!isLand) {
+                console.log('Coordinates are not on land, trying again...');
+            } else {
+                console.log('Weather data not found, trying new coordinates...');
+            }
             coordinates = getRandomCoordinates();
             isLand = await isOnLand(coordinates.lat, coordinates.lng);
+            if (isLand) {
+                weatherData = await getWeatherData(coordinates.lat, coordinates.lng);
+            }
         }
 
         document.getElementById('coordinates').innerText = `Coordinates: ${coordinates.lat}, ${coordinates.lng}`;
-        // Fetch and display weather data for the land coordinates
-        getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
-            console.log('Weather Data:', weather);
-            // Display weather data here
-        });
+        console.log('Weather Data:', weatherData);
+        updateWeather(weatherData);
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -35,8 +43,6 @@ async function isOnLand(lat, lng) {
     const data = await response.json();
     return !data.water;
 }
-
-
 
 function getRandomCoordinates() {
     const lat = Math.random() * 180 - 90; // Latitude from -90 to 90
@@ -52,4 +58,10 @@ async function getWeatherData(lat, lng) {
     const response = await fetch(url);
     const data = await response.json();
     return data.current;
+}
+
+function updateWeather(weatherData){
+    if (weatherData) {
+
+    }
 }
