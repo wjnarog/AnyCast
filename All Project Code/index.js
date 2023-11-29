@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
-//
 const bcrypt = require('bcrypt');
+const path = require('path');
+const axios = require('axios');
+
+const app = express();
 //require('dotenv').config();
 
 const dbConfig = {
@@ -23,10 +26,10 @@ db.connect()
   })
   .catch(error => {
     console.log('ERROR:', error.message || error);
-  });
+});
 
-const app = express();
-
+app.set('views', path.join(__dirname, 'src', 'views'));
+app.use('/resources', express.static(path.join(__dirname, 'src', 'resources')));
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json());
 
@@ -36,8 +39,21 @@ app.use(
   })
 );
 
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
+app.get('/home', (req, res) => {
+
+  res.render('pages/home');
+});
+
 app.get('/welcome', (req, res) => {
   res.json({ status: 'success', message: 'Welcome!' });
+});
+
+app.get('/login', (req,res) => {
+  res.render('pages/login')
 });
 
 app.post('/login', async (req, res) => {
@@ -67,9 +83,9 @@ app.post('/login', async (req, res) => {
 });
 
 
-// app.get('/register', (req, res) => {
-//   res.render('pages/register'); 
-// });
+app.get('/register', (req, res) => {
+  res.render('pages/register'); 
+});
 
 app.post('/register', async (req, res) => {
   try {
@@ -88,6 +104,10 @@ app.post('/register', async (req, res) => {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
   }
+});
+
+app.get('/avatars', (req,res) => {
+  res.render('pages/avatars');
 });
 
 
