@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
-//
 const bcrypt = require('bcrypt');
 const path = require('path');
+const axios = require('axios');
+
 const app = express();
 //require('dotenv').config();
 
@@ -43,11 +44,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-  res.render('pages/button_test');
+
+  res.render('pages/home');
 });
 
 app.get('/welcome', (req, res) => {
   res.json({ status: 'success', message: 'Welcome!' });
+});
+
+app.get('/login', (req,res) => {
+  res.render('pages/login')
 });
 
 app.post('/login', async (req, res) => {
@@ -77,9 +83,9 @@ app.post('/login', async (req, res) => {
 });
 
 
-// app.get('/register', (req, res) => {
-//   res.render('pages/register'); 
-// });
+app.get('/register', (req, res) => {
+  res.render('pages/register'); 
+});
 
 app.post('/register', async (req, res) => {
   try {
@@ -98,6 +104,10 @@ app.post('/register', async (req, res) => {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
   }
+});
+
+app.get('/avatars', (req,res) => {
+  res.render('pages/avatars');
 });
 
 

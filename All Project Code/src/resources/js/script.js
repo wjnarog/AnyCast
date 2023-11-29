@@ -29,9 +29,11 @@ async function generateLandCoordinates() {
         }
 
         document.getElementById('coordinates').innerText = `Coordinates: ${coordinates.lat}, ${coordinates.lng}`;
-        console.log('Weather Data:', weatherData);
-        updateWeather(weatherData);
-
+        // Fetch and display weather data for the land coordinates
+        getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
+            console.log('Weather Data:', weather);
+            // Display weather data here
+        });
     } catch (error) {
         console.error('Error:', error);
     }
