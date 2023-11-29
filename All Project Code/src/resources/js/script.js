@@ -31,7 +31,8 @@ async function generateLandCoordinates() {
         document.getElementById('coordinates').innerText = `Coordinates: ${coordinates.lat}, ${coordinates.lng}`;
         // Fetch and display weather data for the land coordinates
         getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
-            console.log('Weather Data:', weather);
+            console.log('Weather Data:', weatherData);
+            updateWeather(weatherData);
             // Display weather data here
         });
     } catch (error) {
