@@ -33,6 +33,9 @@ app.use('/resources', express.static(path.join(__dirname, 'src', 'resources')));
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json());
 
+
+
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
