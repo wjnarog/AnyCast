@@ -21,8 +21,10 @@ async function generateLandCoordinates() {
             } else {
                 console.log('Weather data not found, trying new coordinates...');
             }
+
             coordinates = getRandomCoordinates();
             isLand = await isOnLand(coordinates.lat, coordinates.lng);
+
             if (isLand) {
                 weatherData = await getWeatherData(coordinates.lat, coordinates.lng);
             }
@@ -33,7 +35,6 @@ async function generateLandCoordinates() {
         getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
             console.log('Weather Data:', weatherData);
             updateWeather(weatherData);
-            // Display weather data here
         });
     } catch (error) {
         console.error('Error:', error);
@@ -65,6 +66,13 @@ async function getWeatherData(lat, lng) {
 
 function updateWeather(weatherData){
     if (weatherData) {
-
+        document.getElementById('weatherLocation').innerText = weatherData.location.name + ', ' + weatherData.location.country;
+        document.getElementById('weatherTemperature').innerText = weatherData.current.temp_c;
+        document.getElementById('weatherWindSpeed').innerText = weatherData.current.wind_kph;
+        document.getElementById('weatherHumidity').innerText = weatherData.current.humidity;
+        document.getElementById('weatherCondition').innerText = weatherData.current.condition.text;
+        document.getElementById('weatherCloud').innerText = weatherData.current.cloud;
+        document.getElementById('weatherFeelsLike').innerText = weatherData.current.feelslike_c;
+        document.getElementById('weatherIcon').src = weatherData.current.condition.icon;
     }
 }
