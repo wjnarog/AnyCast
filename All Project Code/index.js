@@ -33,6 +33,9 @@ app.use('/resources', express.static(path.join(__dirname, 'src', 'resources')));
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json());
 
+
+
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -59,27 +62,39 @@ app.get('/login', (req,res) => {
 app.post('/login', async (req, res) => {
   try {
     console.log(req.body);
-    const { username, password } = req.body;
+    const username = req.body.username;
+    const password = req.body.password;
+
+    const hash = await bcrypt.hash(password, 10);
 
     const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
     if (!user) {
-      return res.redirect('pages/register');
+      console.log("User does NOT exist");
+      return res.redirect('/register');
       //return res.status(401).json({ status: 'error', message: 'User not found' });
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    //May not be encrypting and comparing password (only comparing)
+    // console.log("Before Bcrypt comparison");
+    // console.log("Hashed Password:", hash);
+    // console.log("User.password:", user.password);
+    const match = await bcrypt.compare(password , user.password);
+    // console.log("Match:", match);
     if (!match) {
+      console.log("Incorrect Pass");
       throw new Error('Incorrect username or password.');
       //return res.status(401).json({ status: 'error', message: 'Incorrect username or password' });
     }
+    //console.log("After Bcrypt comparison");
 
-    req.session.user = user;
-    req.session.save();
+    // req.session.user = user;
+    // req.session.save();
     
-    res.redirect('pages/home');
+    console.log("successfully logged in");
+    res.redirect('/home');
     //return res.status(200).json({ status: 'success', message: 'Successfully Logged In'});
   } catch (error) {
-    //console.log('ERROR');
+    console.log('ERROR');
     res.render('pages/login');
     //res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
@@ -101,7 +116,7 @@ app.post('/register', async (req, res) => {
     await db.query(query, values);
     console.log('After database query, ', values);
 
-    res.redirect('/home');
+    res.redirect('/login');
     //res.status(200).json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
   } catch (error) {
     console.error(error);
