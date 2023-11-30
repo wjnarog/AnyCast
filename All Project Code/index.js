@@ -53,32 +53,47 @@ app.get('/welcome', (req, res) => {
 });
 
 app.get('/login', (req,res) => {
-  res.render('pages/login')
+  res.render('pages/login');
 });
 
 app.post('/login', async (req, res) => {
-  
   try {
     console.log(req.body);
-    const { username, password } = req.body;
+    const username = req.body.username;
+    const password = req.body.password;
+
+    const hash = await bcrypt.hash(password, 10);
 
     const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
     if (!user) {
-      return res.status(401).json({ status: 'error', message: 'User not found' });
+      console.log("User does NOT exist");
+      return res.redirect('/register');
+      //return res.status(401).json({ status: 'error', message: 'User not found' });
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    //May not be encrypting and comparing password (only comparing)
+    // console.log("Before Bcrypt comparison");
+    // console.log("Hashed Password:", hash);
+    // console.log("User.password:", user.password);
+    const match = await bcrypt.compare(password , user.password);
+    // console.log("Match:", match);
     if (!match) {
-      return res.status(401).json({ status: 'error', message: 'Incorrect username or password' });
+      console.log("Incorrect Pass");
+      throw new Error('Incorrect username or password.');
+      //return res.status(401).json({ status: 'error', message: 'Incorrect username or password' });
     }
+    //console.log("After Bcrypt comparison");
 
-    req.session.user = user;
-    req.session.save();
-
-    return res.status(200).json({ status: 'success', message: 'Successfully Logged In'});
+    // req.session.user = user;
+    // req.session.save();
+    
+    console.log("successfully logged in");
+    res.redirect('/home');
+    //return res.status(200).json({ status: 'success', message: 'Successfully Logged In'});
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+    console.log('ERROR');
+    res.render('pages/login');
+    //res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 });
 
@@ -98,11 +113,12 @@ app.post('/register', async (req, res) => {
     await db.query(query, values);
     console.log('After database query, ', values);
 
-
-    res.status(200).json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
+    res.redirect('/login');
+    //res.status(200).json({ status: 'success', message: 'Registration successful' }); // Change this response as needed
   } catch (error) {
     console.error(error);
-    res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
+    res.redirect('/register');
+    //res.status(500).json({ status: 'error', message: 'Registration failed: ' + error.message });
   }
 });
 
