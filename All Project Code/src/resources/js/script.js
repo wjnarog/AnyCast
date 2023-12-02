@@ -64,7 +64,18 @@ async function getWeatherData(lat, lng) {
 }
 
 function updateWeather(weatherData){
+    const weatherInfo = document.getElementById('weather-info');
+    
     if (weatherData) {
-
+        weatherInfo.innerHTML = `
+            <h2>Weather Information</h2>
+            <p id="temperature">Temperature: ${weatherData.temp_c}°C</p>
+            <p id="weather-condition">Condition: ${weatherData.condition.text}</p>
+            <p id="humidity">Humidity: ${weatherData.humidity}%</p>
+            <!-- Add more elements for additional information -->
+        `;
+    } else {
+        weatherInfo.innerHTML = '<p>No weather information available</p>';
     }
 }
+
