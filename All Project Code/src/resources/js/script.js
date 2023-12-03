@@ -15,12 +15,11 @@ const generateButton = document.getElementById('generate');
 
 // Add a click event listener to the button
 generateButton.addEventListener('click', function() {
+    document.getElementById('errorMessage').innerText = '';
     // Switch between Boulder and random coordinates
     if (currentLat === boulderLat && currentLng === boulderLng) {
         // If currently showing Boulder, switch to random coordinates
         generateRandomCoordinates();
-        // Update the button text
-        // generateButton.innerText = 'Back to Boulder';
     } else {
         // If currently showing random coordinates, switch to Boulder
         currentLat = boulderLat;
@@ -211,8 +210,8 @@ function updateWeather(weatherData){
         weatherInfo.innerHTML = `
             <img src="${iconUrl}" alt="Weather Icon">
             <p id="temperature">Temperature: ${weatherData.temp_f}°F</p>
-            <p id="weather-condition">Condition: ${weatherData.condition.text},  Feels like: ${weatherData.feelslike_f} </p>
-            <p id="humidity">Humidity: ${weatherData.humidity}%,         Gust mph: ${weatherData.gust_mph}</p>
+            <p id="weather-condition">Condition: ${weatherData.condition.text},  Feels like: ${weatherData.feelslike_f}°F</p>
+            <p id="humidity">Humidity: ${weatherData.humidity}%,         Gusting: ${weatherData.gust_mph}mph</p>
             <!-- Add more elements for additional information -->
         `;
     } else {

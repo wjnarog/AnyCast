@@ -2,28 +2,22 @@
 <%- include ('../partials/menu') %>
 
 <main>
-    <div class="container">
+    <div class="container" id="backgroundContainer" style="background-image: url('/resources/img/default-background.png');">
         <head>
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         </head>
         <body>
-            <div class="box centered">
+            <div id="infoBox" class="box centered">
                 <div id="coordinates"></div>
-                <div id="location-info" class="location-details">
-                    <p id="country"></p>
-                    <p id="state"></p>
-                    <p id="city"></p>
-                    <p id="errorMessage" style="color: red;"></p>
-                    <p id="loadingMessage" style="display: none;">Loading...</p>
-                </div>
-                <div id="weather-info">
-                    <p id="temperature"></p>
-                    <div id="weather-icon"></div>
-                    <p id="weather-condition"></p>
-                    <p id="humidity"></p>
-                </div>
+
+                <div id="location-info" class="location-details"></div>
+
+                <div id="weather-info"></div>
                 <button id="generate">RANDOMIZE</button>
-                <div id="errorMessage"></div>
+                <p id="errorMessage" style="color: red;"></p>
+                <p id="loadingMessage" style="display: none;">Loading...</p>
+                <div></div>
+
                 <script src="/resources/js/script.js"></script>
             </div>
             <!-- <div id="my-map" class="map-container"></div> -->
