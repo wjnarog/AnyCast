@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call the function to get weather information for Boulder when the page loads
     getWeatherInfo(boulderLat, boulderLng);
     
-    // map implementation unfinished
+    // map implementation (unfinished)
     // var map = new maplibregl.Map({
     //     container: 'my-map',
     //     style: 'https://maps.geoapify.com/v1/styles/osm-bright-smooth/style.json?apiKey=ad0cddc0c26946eeafb204536230911',

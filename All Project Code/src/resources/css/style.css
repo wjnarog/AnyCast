@@ -2,15 +2,15 @@
 /* avatar page css */
 .circle-container {
     display: flex;
-    justify-content: space-around; 
+    justify-content: center; /* Center horizontally */
     align-items: center;
-    margin-top: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    gap: 20px; /* Adjust the gap between buttons as needed */
 }
 
 .circle {
-    width: 100px; 
-    height: 100px; 
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -21,7 +21,6 @@
     object-fit: cover;
     border-radius: 50%;
 }
-
 
 /* overlay css code */
 /* .overlay {
@@ -126,7 +125,7 @@ header {
 }
 
 #backgroundContainer {
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh; 
