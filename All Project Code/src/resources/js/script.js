@@ -28,6 +28,16 @@ async function generateLandCoordinates() {
             }
         }
 
+        // plugs coordinate info into async function
+        const locationInfo = await getLocationInfo(coordinates.lat, coordinates.lng);
+
+        document.getElementById('coordinates').innerText = `Coordinates: ${coordinates.lat}, ${coordinates.lng}`;
+        if (locationInfo) {
+            updateLocationInfo(locationInfo);
+        } else {
+            console.log('Location information not available.');
+        }
+
         document.getElementById('coordinates').innerText = `Coordinates: ${coordinates.lat}, ${coordinates.lng}`;
         // Fetch and display weather data for the land coordinates
         getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
@@ -37,6 +47,7 @@ async function generateLandCoordinates() {
         });
     } catch (error) {
         console.error('Error:', error);
+        document.getElementById('errorMessage').innerText = 'An error occurred. Please try again.'; 
     }
 }
 
@@ -63,13 +74,30 @@ async function getWeatherData(lat, lng) {
     return data.current;
 }
 
+// function to get location data based on generated coordinates using reverse geocoding api
+async function getLocationInfo(lat, lng) {
+    const apiKey = '9a72f8c10f9f414db8c4efa65e7a9cbc'; // Replace with your actual API key
+    const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${apiKey}`;
+
+    try {
+        const response = await axios.get(url);
+        const locationInfo = response.data.features[0].properties;
+        return locationInfo;
+    } catch (error) {
+        console.error('Error fetching location information:', error);
+        return null;
+    }
+}
+
 function updateWeather(weatherData){
     const weatherInfo = document.getElementById('weather-info');
     
     if (weatherData) {
+        const iconUrl = `https:${weatherData.condition.icon}`;
         weatherInfo.innerHTML = `
             <h2>Weather Information</h2>
             <p id="temperature">Temperature: ${weatherData.temp_c}°C</p>
+            <img src="${iconUrl}" alt="Weather Icon">
             <p id="weather-condition">Condition: ${weatherData.condition.text}</p>
             <p id="humidity">Humidity: ${weatherData.humidity}%</p>
             <!-- Add more elements for additional information -->
@@ -77,5 +105,17 @@ function updateWeather(weatherData){
     } else {
         weatherInfo.innerHTML = '<p>No weather information available</p>';
     }
+}
+
+function updateLocationInfo(locationInfo) {
+    const locationInfoElement = document.getElementById('location-info');
+    locationInfoElement.innerHTML = `
+        <h2>Location Information</h2>
+        <p>Name: ${locationInfo.name}</p>
+        <p>Country: ${locationInfo.country}</p>
+        <p>State: ${locationInfo.state}</p>
+        <p>City: ${locationInfo.city}</p>
+        <!-- Add more elements for additional information -->
+    `;
 }
 

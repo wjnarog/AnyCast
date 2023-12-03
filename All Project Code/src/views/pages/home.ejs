@@ -11,9 +11,12 @@
             <div class="box centered">
                 <button id="generate">Generate Coordinates</button>
                 <p id="coordinates"></p>
+                <p id="errorMessage" style="color: red;"></p>
+                <div id="location-info"></div>
                 <div id="weather-info">
                     <h2>Weather Information</h2>
                     <p id="temperature"></p>
+                    <div id="weather-icon"></div>
                     <p id="weather-condition"></p>
                     <p id="humidity"></p>
                 </div>
@@ -22,5 +25,7 @@
       </body>
     </div>
 </main>
+
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 
 <%- include ('../partials/footer') %>
