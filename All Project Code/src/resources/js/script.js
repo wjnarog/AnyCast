@@ -4,10 +4,114 @@
 
 let weatherData = null;
 
-//when button is pressed, call the following function
-document.getElementById('generate').addEventListener('click', function() {
-    generateLandCoordinates();
+const boulderLat = 40.0150;
+const boulderLng = -105.2705;
+
+let currentLat = boulderLat;
+let currentLng = boulderLng;
+
+
+const generateButton = document.getElementById('generate');
+
+// Add a click event listener to the button
+generateButton.addEventListener('click', function() {
+    // Switch between Boulder and random coordinates
+    if (currentLat === boulderLat && currentLng === boulderLng) {
+        // If currently showing Boulder, switch to random coordinates
+        generateRandomCoordinates();
+        // Update the button text
+        // generateButton.innerText = 'Back to Boulder';
+    } else {
+        // If currently showing random coordinates, switch to Boulder
+        currentLat = boulderLat;
+        currentLng = boulderLng;
+
+        // Update the button text
+        generateButton.innerText = 'Randomize';
+    }
+
+    // Call the function to get weather information for the current coordinates
+    getWeatherInfo(currentLat, currentLng);
 });
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Call the function to get weather information for Boulder when the page loads
+    getWeatherInfo(boulderLat, boulderLng);
+    
+    // map implementation unfinished
+    // var map = new maplibregl.Map({
+    //     container: 'my-map',
+    //     style: 'https://maps.geoapify.com/v1/styles/osm-bright-smooth/style.json?apiKey=ad0cddc0c26946eeafb204536230911',
+    // });
+
+});
+
+async function generateRandomCoordinates() {
+    let attempts = 0;
+    const maxAttempts = 5; // adjust the number of attempts as needed
+
+    try {
+        while (attempts < maxAttempts) {
+            const randomCoordinates = getRandomCoordinates();
+            currentLat = randomCoordinates.lat;
+            currentLng = randomCoordinates.lng;
+
+            // Fetch weather data for the provided coordinates
+            weatherData = await getWeatherData(currentLat, currentLng);
+
+            // If weather data is available, break out of the loop
+            if (weatherData) {
+                // Update the button text
+                generateButton.innerText = 'Back to Boulder';
+
+                // Call the function to get weather information for the current coordinates
+                getWeatherInfo(currentLat, currentLng);
+                return;
+            }
+
+            // If weather data is not available, increment the attempts counter
+            attempts++;
+            console.log(`Attempt ${attempts}: Weather data not available, trying new coordinates...`);
+        }
+
+        // If max attempts reached and no weather data, handle it accordingly
+        console.log(`Max attempts reached, weather data not available.`);
+        document.getElementById('errorMessage').innerText = 'Weather data not available. Please try again.';
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('errorMessage').innerText = 'An error occurred. Please try again.';
+    }
+}
+
+
+async function getWeatherInfo(lat, lng) {
+    try {
+        // Fetch weather data for the provided coordinates
+        weatherData = await getWeatherData(lat, lng); // Remove the "let" keyword
+
+        // Fetch location information for the provided coordinates
+        const locationInfo = await getLocationInfo(lat, lng);
+
+        // Display the coordinates
+        document.getElementById('coordinates').innerText = `Coordinates: ${lat}, ${lng}`;
+
+        // Display location information
+        if (locationInfo) {
+            updateLocationInfo(locationInfo);
+        } else {
+            console.log('Location information not available.');
+        }
+
+        // Display weather information
+        console.log('Weather Data:', weatherData);
+        updateWeather(weatherData);
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('errorMessage').innerText = 'An error occurred. Please try again.';
+    }
+}
+
 
 // Asynchronously find coordinates on land
 async function generateLandCoordinates() {
@@ -89,17 +193,26 @@ async function getLocationInfo(lat, lng) {
     }
 }
 
+function updateLocationInfo(locationInfo) {
+    const locationInfoElement = document.getElementById('location-info');
+    locationInfoElement.innerHTML = `
+        <div id="location-details">
+            <p><strong> ${locationInfo.country}, ${locationInfo.state}, ${locationInfo.city}</strong></p>
+        </div>
+        <!-- Add more elements for additional information -->
+    `;
+}
+
 function updateWeather(weatherData){
     const weatherInfo = document.getElementById('weather-info');
     
     if (weatherData) {
         const iconUrl = `https:${weatherData.condition.icon}`;
         weatherInfo.innerHTML = `
-            <h2>Weather Information</h2>
-            <p id="temperature">Temperature: ${weatherData.temp_c}°C</p>
             <img src="${iconUrl}" alt="Weather Icon">
-            <p id="weather-condition">Condition: ${weatherData.condition.text}</p>
-            <p id="humidity">Humidity: ${weatherData.humidity}%</p>
+            <p id="temperature">Temperature: ${weatherData.temp_f}°F</p>
+            <p id="weather-condition">Condition: ${weatherData.condition.text},  Feels like: ${weatherData.feelslike_f} </p>
+            <p id="humidity">Humidity: ${weatherData.humidity}%,         Gust mph: ${weatherData.gust_mph}</p>
             <!-- Add more elements for additional information -->
         `;
     } else {
@@ -107,15 +220,4 @@ function updateWeather(weatherData){
     }
 }
 
-function updateLocationInfo(locationInfo) {
-    const locationInfoElement = document.getElementById('location-info');
-    locationInfoElement.innerHTML = `
-        <h2>Location Information</h2>
-        <p>Name: ${locationInfo.name}</p>
-        <p>Country: ${locationInfo.country}</p>
-        <p>State: ${locationInfo.state}</p>
-        <p>City: ${locationInfo.city}</p>
-        <!-- Add more elements for additional information -->
-    `;
-}
 

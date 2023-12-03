@@ -1,13 +1,15 @@
+
+/* avatar page css */
 .circle-container {
     display: flex;
-    justify-content: space-around; /* or use justify-content: space-between; */
+    justify-content: space-around; 
     align-items: center;
     margin-top: 20px;
 }
 
 .circle {
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust as needed */
+    width: 100px; 
+    height: 100px; 
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -20,6 +22,8 @@
     border-radius: 50%;
 }
 
+
+/* overlay css code */
 /* .overlay {
     position: fixed;
     top: 0;
@@ -41,16 +45,20 @@
     text-align: center;
 } */
 
+
+/* footer partial css */
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     padding: 10px;
-    background-color: #f8f9fa; /* Optional: Set a background color for the footer */
-    color: #495057; /* Optional: Set text color for the footer */
+    background-color: #f8f9fa; 
+    color: #495057; 
 }
 
+
+/* nav-bar partial css */
 header {
     position: relative;
 }
@@ -73,7 +81,7 @@ header {
 }
 
 .navbar-nav .nav-item {
-    margin-right: 10px; /* Adjust the value as needed for your desired spacing */
+    margin-right: 10px; 
 }
 
 .nav-link img {
@@ -82,3 +90,41 @@ header {
     display: flex;
     align-items: center;
 }
+
+/* Home page css */
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+#weather-icon img {
+    width: 100px; 
+    height: 100px; 
+}
+
+#temperature {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#location-info {
+    margin-bottom: 20px;
+}
+
+.box {
+    text-align: center;
+}
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .map-container {
+    height: 400px;
+} */

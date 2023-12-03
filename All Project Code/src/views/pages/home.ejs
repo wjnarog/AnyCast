@@ -3,25 +3,30 @@
 
 <main>
     <div class="container">
-        <h1>Home</h1>
         <head>
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         </head>
         <body>
             <div class="box centered">
-                <button id="generate">Generate Coordinates</button>
-                <p id="coordinates"></p>
-                <p id="errorMessage" style="color: red;"></p>
-                <div id="location-info"></div>
+                <div id="coordinates"></div>
+                <div id="location-info" class="location-details">
+                    <p id="country"></p>
+                    <p id="state"></p>
+                    <p id="city"></p>
+                    <p id="errorMessage" style="color: red;"></p>
+                    <p id="loadingMessage" style="display: none;">Loading...</p>
+                </div>
                 <div id="weather-info">
-                    <h2>Weather Information</h2>
                     <p id="temperature"></p>
                     <div id="weather-icon"></div>
                     <p id="weather-condition"></p>
                     <p id="humidity"></p>
                 </div>
+                <button id="generate">RANDOMIZE</button>
+                <div id="errorMessage"></div>
                 <script src="/resources/js/script.js"></script>
             </div>
+            <!-- <div id="my-map" class="map-container"></div> -->
       </body>
     </div>
 </main>
