@@ -34,6 +34,7 @@ async function generateLandCoordinates() {
         // Fetch and display weather data for the land coordinates
         getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
             console.log('Weather Data:', weatherData);
+            // console.log('Region: ', weatherData['region']);
             updateWeather(weatherData);
         });
     } catch (error) {
@@ -64,15 +65,15 @@ async function getWeatherData(lat, lng) {
     return data.current;
 }
 
-function updateWeather(weatherData){
+function updateWeather(weatherData) {
     if (weatherData) {
-        document.getElementById('weatherLocation').innerText = weatherData.location.name + ', ' + weatherData.location.country;
-        document.getElementById('weatherTemperature').innerText = weatherData.current.temp_c;
-        document.getElementById('weatherWindSpeed').innerText = weatherData.current.wind_kph;
-        document.getElementById('weatherHumidity').innerText = weatherData.current.humidity;
-        document.getElementById('weatherCondition').innerText = weatherData.current.condition.text;
-        document.getElementById('weatherCloud').innerText = weatherData.current.cloud;
-        document.getElementById('weatherFeelsLike').innerText = weatherData.current.feelslike_c;
-        document.getElementById('weatherIcon').src = weatherData.current.condition.icon;
+        document.getElementById('temp_f').innerText = weatherData.temp_f + '°F';
+        document.getElementById('feelsLike').innerText = weatherData.feelslike_f + '°C';
+        document.getElementById('wind_mph').innerText = weatherData.wind_mph + ' mph';
+        document.getElementById('humidity').innerText = weatherData.humidity + '%';
+        document.getElementById('condition').innerText = weatherData.condition.text;
+        document.getElementById('cloudCover').innerText = weatherData.cloud + '%';
+    } else {
+        document.getElementById('weatherInfo').innerText = "Weather data not available.";
     }
 }

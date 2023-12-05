@@ -9,7 +9,14 @@ CREATE TABLE users_to_themes(
     avatar INT FOREIGN KEY
 );
 
-CREATE TABLE themes(
+CREATE TABLE themes(docker compose up 
    avatar INT PRIMARY KEY,
    theme INT
 );
+
+-- CREATE TABLE users_history (
+--     username varchar(50) FOREIGN KEY,
+--     dateacc date,
+--     coordslat DECIMAL,
+--     coordslng DECIMAL,
+-- );

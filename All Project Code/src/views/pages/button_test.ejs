@@ -8,6 +8,24 @@
     <button id="generate">Generate Coordinates</button>
     <p id="coordinates"></p>
 
+    <div id="weatherInfo" style="padding: 20px; border: 1px solid #ddd; margin-top: 20px;">
+        <h2>Weather Details</h2>
+        <p><strong>Temperature:</strong> <span id="temp_f"></span></p>
+        <p><strong>Wind Speed:</strong> <span id="wind_mph"></span></p>
+        <p><strong>Humidity:</strong> <span id="humidity"></span></p>
+        <p><strong>Condition:</strong> <span id="condition"></span></p>
+        <p><strong>Cloud Cover:</strong> <span id="cloudCover"></span></p>
+        <p><strong>Feels Like:</strong> <span id="feelsLike"></span></p>
+        <img id="weatherIcon" src="" alt="Weather Icon" style="max-width: 100px; height: auto;">
+    </div>
+
+    <!--document.getElementById('temp_f').innerText = weatherData.temp_f + '°F';
+        document.getElementById('feelsLike').innerText = weatherData.feelslike_f + '°C';
+        document.getElementById('wind_mph').innerText = weatherData.wind_mph + ' mph';
+        document.getElementById('humidity').innerText = weatherData.humidity + '%';
+        document.getElementById('condition').innerText = weatherData.condition.text;
+        document.getElementById('cloudCover').innerText = weatherData.cloud + '%';-->
+
     <script src="/resources/js/script.js"></script>
 </body>
 </html>
