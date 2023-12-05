@@ -23,25 +23,27 @@
               <div class="loginput-group">
 
                 <div class="loginput-field">
-                  <input type="text" class="loginput-box" id="loginUN" required>
-                  <label for="loginUN">Username</label>
+                  <input type="text" class="loginput-box" id="username" name="username" required>
+                  <label for="username">Username</label>
                 </div>
 
                 <div class="loginput-field">
-                  <input type="password" class="loginput-box" id="loginPass" required>
-                  <label for="loginPass">Password</label>
+                  <input type="password" class="loginput-box" id="password" name="password" required>
+                  <label for="password">Password</label>
                 </div>
 
                 <div class="loginput-field">
                   <input type="submit" class="loginput-submit" value="Sign In">
                 </div>
 
+                <p>Already have an account? <a href="/register">Register</a></p>
+
               </div>
 
             </div>
       </form>
   <!-- <------------------------------- register -------------------------------->
-          <form action="/register" method="POST">  
+          <!-- <form action="/register" method="POST">  
             <div class="register-box" id="register">
 
               <div class="login-header">
@@ -68,12 +70,12 @@
                 <div class="loginput-field">
                   <input type="submit" class="loginput-submit" value="Sign Up">
                 </div>
-              </div>
+              </div> -->
 
-            </div>
-          </form>
+            <!-- </div> -->
+          <!-- </form> -->
             <!-- /*<-------------------------- Switch -------------------------->
-            <div class="switch">
+            <!-- <div class="switch">
               <a href="#" class="login" onclick="login()">Login</a>
               <a href="#" class="register" onclick="register()">Register</a>
               <div class="sbtn-active" id="sbtn"></div>
@@ -98,7 +100,7 @@
           y.style.left = "25px"
           z.style.left = "150px"
         }
-      </script>
+      </script> -->
     </body>
   </main>
 
