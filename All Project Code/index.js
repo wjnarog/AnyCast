@@ -47,8 +47,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-
   res.render('pages/home');
+});
+
+app.get('/test', (req, res) => {
+  res.render('pages/button_test');
 });
 
 app.get('/welcome', (req, res) => {

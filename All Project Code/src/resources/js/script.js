@@ -124,8 +124,10 @@ async function generateLandCoordinates() {
             } else {
                 console.log('Weather data not found, trying new coordinates...');
             }
+
             coordinates = getRandomCoordinates();
             isLand = await isOnLand(coordinates.lat, coordinates.lng);
+
             if (isLand) {
                 weatherData = await getWeatherData(coordinates.lat, coordinates.lng);
             }
@@ -146,7 +148,6 @@ async function generateLandCoordinates() {
         getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
             console.log('Weather Data:', weatherData);
             updateWeather(weatherData);
-            // Display weather data here
         });
     } catch (error) {
         console.error('Error:', error);
@@ -216,7 +217,7 @@ function updateWeather(weatherData){
         `;
     } else {
         weatherInfo.innerHTML = '<p>No weather information available</p>';
+
     }
 }
-
 
