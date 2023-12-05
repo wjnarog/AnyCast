@@ -12,4 +12,3 @@ CREATE TABLE users_to_themes(
 CREATE TABLE themes(
    avatar INT PRIMARY KEY,
    theme INT
-);
