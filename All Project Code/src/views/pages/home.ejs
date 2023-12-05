@@ -1,0 +1,30 @@
+<%- include ('../partials/head') %>
+<%- include ('../partials/menu') %>
+
+<main>
+    <div class="container" id="backgroundContainer" style="background-image: url('/resources/img/default-background.png');">
+        <head>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        </head>
+        <body>
+            <div id="infoBox" class="box centered">
+                <div id="coordinates"></div>
+
+                <div id="location-info" class="location-details"></div>
+
+                <div id="weather-info"></div>
+                <button id="generate" class="button-27">RANDOMIZE</button>
+                <p id="errorMessage" style="color: red;"></p>
+                <p id="loadingMessage" style="display: none;">Loading...</p>
+                <div></div>
+
+                <script src="/resources/js/script.js"></script>
+            </div>
+            <!-- <div id="my-map" class="map-container"></div> -->
+      </body>
+    </div>
+</main>
+
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+
+<%- include ('../partials/footer') %>
