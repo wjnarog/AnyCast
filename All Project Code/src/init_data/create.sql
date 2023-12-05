@@ -12,11 +12,4 @@ CREATE TABLE users_to_themes(
 CREATE TABLE themes(docker compose up 
    avatar INT PRIMARY KEY,
    theme INT
-);
 
--- CREATE TABLE users_history (
---     username varchar(50) FOREIGN KEY,
---     dateacc date,
---     coordslat DECIMAL,
---     coordslng DECIMAL,
--- );
