@@ -1,9 +1,0 @@
-First Team Meeting:
-    Date: 11/15 @ 4:30pm
-    Discussed:
-        - We went over the steps of the project to make sure we are on track for this lab (i.e., test cases and UAT)
-        - Told we should create an ER diagram to show how our tables are related with primary keys, foreign keys, variable type. (look at lab6 write-up for example)
-        - We should build some of the more basic hmtl pages to get started on connections.
-        - We should pick our API (we have it down to 2-3) and make tables and api calls so we can start pull data to db
-        - Start working on customizable avatars once logged in (if possible) (will be a lot of work if we don't start soon)
-        - Need to update the status of the user stories
