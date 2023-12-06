@@ -47,8 +47,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-
   res.render('pages/home');
+});
+
+app.get('/test', (req, res) => {
+  res.render('pages/button_test');
 });
 
 app.get('/welcome', (req, res) => {
@@ -128,6 +131,27 @@ app.post('/register', async (req, res) => {
 app.get('/avatars', (req,res) => {
   res.render('pages/avatars');
 });
+
+// app.post('/avatars', async (req, res) => {
+//   try {
+//     // Check if the user is logged in
+//     const user = req.session.user;
+//     if (!user) {
+//       return res.status(401).json({ status: 'error', message: 'Unauthorized' });
+//     }
+
+//     // Get the selected avatar value from the request body
+//     const selectedAvatar = req.body.avatar;
+
+//     // Save the selected avatar to the database (assuming you have a users_to_themes table)
+//     await db.none('INSERT INTO users_to_themes (username, avatar) VALUES ($1, $2) ON CONFLICT (username) DO UPDATE SET avatar = $2', [user.username, selectedAvatar]);
+
+//     res.status(200).json({ status: 'success', message: 'Avatar saved successfully' });
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+//   }
+// });
 
 
 

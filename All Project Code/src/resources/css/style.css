@@ -1,14 +1,16 @@
+
+/* avatar page css */
 .circle-container {
     display: flex;
-    justify-content: space-around; /* or use justify-content: space-between; */
+    justify-content: center; /* Center horizontally */
     align-items: center;
-    margin-top: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    gap: 20px; /* Adjust the gap between buttons as needed */
 }
 
 .circle {
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust as needed */
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -18,4 +20,178 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+/* overlay css code */
+/* .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.blurry-container {
+    backdrop-filter: blur(8px); 
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5); 
+    text-align: center;
+} */
+
+
+/* footer partial css */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa; 
+    color: #495057; 
+}
+
+
+/* nav-bar partial css */
+header {
+    position: relative;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item.ml-auto {
+    margin-left: auto;
+}
+
+.nav-link {
+    width: 40px; 
+    height: 40px; 
+    display: flex;
+    /* padding: 5px; */
+    align-items: center;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px; 
+}
+
+.nav-link img {
+    width: 200%; 
+    height: 200%; 
+    display: flex;
+    align-items: center;
+}
+
+/* Home page css */
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+#weather-icon img {
+    width: 100px; 
+    height: 100px; 
+}
+
+#temperature {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#location-info {
+    margin-bottom: 20px;
+}
+
+.box {
+    text-align: center;
+}
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#backgroundContainer {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; 
+    width: 100%;
+}
+
+body {
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    height: 100vh; /* Set the height of the body to cover the entire viewport */
+}
+
+#infoBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Optionally, set the height to fill the viewport */
+}
+
+/* .map-container {
+    height: 400px;
+} */
+
+
+/* Randomize button css */
+/* found on website: https://getcssscan.com/css-buttons-examples */
+.button-27 {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  /* font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; */
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  width: auto;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* width: 100%; */
+  will-change: transform;
+}
+
+.button-27:disabled {
+  pointer-events: none;
+}
+
+.button-27:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
