@@ -1,6 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
+const bodyParser = require('body-parser');
+const session = require('express-session');
+//
 const bcrypt = require('bcrypt');
 const path = require('path');
 const axios = require('axios');
@@ -39,6 +41,11 @@ app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
+  }),
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false,
   })
 );
 
@@ -70,7 +77,7 @@ app.post('/login', async (req, res) => {
 
     const hash = await bcrypt.hash(password, 10);
 
-    const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
+    const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1;', username);
     if (!user) {
       console.log("User does NOT exist");
       return res.redirect('/register');
@@ -90,8 +97,8 @@ app.post('/login', async (req, res) => {
     }
     //console.log("After Bcrypt comparison");
 
-    // req.session.user = user;
-    // req.session.save();
+    req.session.user = user;
+    req.session.save();
     
     console.log("successfully logged in");
     res.redirect('/home');
@@ -132,26 +139,26 @@ app.get('/avatars', (req,res) => {
   res.render('pages/avatars');
 });
 
-// app.post('/avatars', async (req, res) => {
-//   try {
-//     // Check if the user is logged in
-//     const user = req.session.user;
-//     if (!user) {
-//       return res.status(401).json({ status: 'error', message: 'Unauthorized' });
-//     }
+app.post('/avatars', async (req, res) => {
+  try {
+    // Check if the user is logged in
+    const user = req.session.user;
+    if (!user) {
+      return res.status(401).json({ status: 'error', message: 'Unauthorized' });
+    }
 
-//     // Get the selected avatar value from the request body
-//     const selectedAvatar = req.body.avatar;
+    // Get the selected avatar value from the request body
+    const selectedAvatar = req.body.avatar;
 
-//     // Save the selected avatar to the database (assuming you have a users_to_themes table)
-//     await db.none('INSERT INTO users_to_themes (username, avatar) VALUES ($1, $2) ON CONFLICT (username) DO UPDATE SET avatar = $2', [user.username, selectedAvatar]);
+    // Save the selected avatar to the database (assuming you have a users_to_themes table)
+    await db.none('INSERT INTO users_to_themes (username, avatar) VALUES ($1, $2) ON CONFLICT (username) DO UPDATE SET avatar = $2', [user.username, selectedAvatar]);
 
-//     res.status(200).json({ status: 'success', message: 'Avatar saved successfully' });
-//   } catch (error) {
-//     console.error('Error:', error);
-//     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
-//   }
-// });
+    res.status(200).json({ status: 'success', message: 'Avatar saved successfully' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
+});
 
 
 
