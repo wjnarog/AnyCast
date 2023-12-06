@@ -147,7 +147,6 @@ async function generateLandCoordinates() {
         // Fetch and display weather data for the land coordinates
         getWeatherData(coordinates.lat, coordinates.lng).then(weather => {
             console.log('Weather Data:', weatherData);
-            // console.log('Region: ', weatherData['region']);
             updateWeather(weatherData);
         });
     } catch (error) {
@@ -208,14 +207,16 @@ function updateWeather(weatherData){
     const weatherInfo = document.getElementById('weather-info');
     
     if (weatherData) {
-        document.getElementById('weatherLocation').innerText = weatherData.location.name + ', ' + weatherData.location.country;
-        document.getElementById('weatherTemperature').innerText = weatherData.current.temp_c;
-        document.getElementById('weatherWindSpeed').innerText = weatherData.current.wind_kph;
-        document.getElementById('weatherHumidity').innerText = weatherData.current.humidity;
-        document.getElementById('weatherCondition').innerText = weatherData.current.condition.text;
-        document.getElementById('weatherCloud').innerText = weatherData.current.cloud;
-        document.getElementById('weatherFeelsLike').innerText = weatherData.current.feelslike_c;
-        document.getElementById('weatherIcon').src = weatherData.current.condition.icon;
+        const iconUrl = `https:${weatherData.condition.icon}`;
+        weatherInfo.innerHTML = `
+            <img src="${iconUrl}" alt="Weather Icon">
+            <p id="temperature">Temperature: ${weatherData.temp_f}°F</p>
+            <p id="weather-condition">Condition: ${weatherData.condition.text},  Feels like: ${weatherData.feelslike_f}°F</p>
+            <p id="humidity">Humidity: ${weatherData.humidity}%,         Gusting: ${weatherData.gust_mph}mph</p>
+            <!-- Add more elements for additional information -->
+        `;
+    } else {
+        weatherInfo.innerHTML = '<p>No weather information available</p>';
+
     }
 }
-
