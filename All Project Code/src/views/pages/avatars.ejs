@@ -2,21 +2,60 @@
 <%- include ('../partials/menu') %>
 
 <main>
-    <div class="container">
-        <h1>Avatars</h1>
+  <div class="container" id="backgroundContainer" style="background-image: url('<%= avatarImgBackground %>');">
         <body>
-            <div class="box">
-              <div class="circle-container">
-                  <div class="circle"><img src="/resources/img/ferret.png" alt="Image 1"></div>
-                  <div class="circle"><img src="/resources/img/buffalo.png" alt="Image 2"></div>
-                  <div class="circle"><img src="/resources/img/Iguana.png" alt="Image 3"></div>
-                  <div class="circle"><img src="/resources/img/koala.png" alt="Image 4"></div>
-                  <div class="circle"><img src="/resources/img/macaw.png" alt="Image 5"></div>
-              </div>
+            <div class="box" id="infoBox">
+              <h1 style="text-align: center;">Choose Your Avatar</h1>
+              <form id="avatarForm" action="/avatars" method="post">
+                <input type="hidden" name="avatar" id="selectedAvatar" value=""/>
+                <div class="circle-container">
+                  <button type="submit" name="avatar" value="1" data-background="/resources/img/ferret-background.jpg" style="background: url('/resources/img/ferret.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="2" data-background="/resources/img/buffalo-background.jpg" style="background: url('/resources/img/buffalo.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="3" data-background="/resources/img/Iguana-background.jpg" style="background: url('/resources/img/Iguana.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="4" data-background="/resources/img/koala-background.jpg" style="background: url('/resources/img/koala.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="5" data-background="/resources/img/macaw-background.jpg" style="background: url('/resources/img/macaw.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                </div>
+            </form>
             </div>
       </body>
+        <!-- Overlay for non-logged-in users (unfinished) -->
+        <!-- <div class="overlay">
+            <div class="blurry-container">
+                <h2>Please log in to access avatars.</h2>
+            </div>
+        </div> -->
+        
     </div>
   </main>
+
+  <!-- listens and switches the background image of the page based on which avatar you choose (unfinished) -->
+  <script>
+    document.getElementById('avatarForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const selectedAvatarValue = event.submitter.value;
+        document.getElementById('selectedAvatar').value = selectedAvatarValue;
+
+        // Get the data-background attribute from the selected avatar button
+        const backgroundImage = selectedAvatar.getAttribute('data-background');
+
+        switch (selectedAvatarValue) {
+          case '1': document.getElementById('backgroundContainer').style.backgroundImage = `url('/resources/img/ferret-background.png')`;
+            break;
+          case '2': document.getElementById('backgroundContainer').style.backgroundImage = `url('/resources/img/buffalo-background.png')`;
+            break;
+          case '3': document.getElementById('backgroundContainer').style.backgroundImage = `url('/resources/img/iguana-background.png')`;
+            break;
+          case '4': document.getElementById('backgroundContainer').style.backgroundImage = `url('/resources/img/koala-background.png')`;
+            break;
+          case '5': document.getElementById('backgroundContainer').style.backgroundImage = `url('/resources/img/macaw-background.png')`;
+            break;
+          default:
+        };
+
+        event.target.submit();
+    });
+</script>
 
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 
