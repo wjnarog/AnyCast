@@ -13,7 +13,8 @@ CREATE TABLE users_to_themes(
     username VARCHAR(50),
     avatar INT,
     FOREIGN KEY (username) REFERENCES users (username),
-    FOREIGN KEY (avatar) REFERENCES themes (avatar)
+    FOREIGN KEY (avatar) REFERENCES themes (avatar),
+    UNIQUE (username)
 );
 
 
