@@ -220,4 +220,3 @@ function updateWeather(weatherData){
 
     }
 }
-
