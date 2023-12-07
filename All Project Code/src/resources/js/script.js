@@ -75,7 +75,7 @@ async function generateRandomCoordinates() {
             weatherData = await getWeatherData(currentLat, currentLng);
 
             // If weather data is available, break out of the loop
-            if (weatherData) {
+            if (weatherData && weatherData.country !== 'undefined' && weatherData.state !== 'undefined') {
                 // Update the button text
                 generateButton.innerText = 'Back to Boulder';
 
@@ -171,11 +171,11 @@ async function generateLandCoordinates() {
 }
 
 // Function to check if coordinates are on land using iswater.io
-async function isOnLand(lat, lng) {
-    const response = await fetch(`https://isitwater-com.p.rapidapi.com/?latitude=${lat}&longitude=${lng}&rapidapi-key=3a932eef1fmsh42c524bd7674ff8p120ac4jsn43ea7bf6057c`);
-    const data = await response.json();
-    return !data.water;
-}
+// async function isOnLand(lat, lng) {
+//     const response = await fetch(`https://isitwater-com.p.rapidapi.com/?latitude=${lat}&longitude=${lng}&rapidapi-key=3a932eef1fmsh42c524bd7674ff8p120ac4jsn43ea7bf6057c`);
+//     const data = await response.json();
+//     return !data.water;
+// }
 
 function getRandomCoordinates() {
     const lat = Math.random() * 180 - 90; // Latitude from -90 to 90

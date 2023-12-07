@@ -2,21 +2,22 @@
 <%- include ('../partials/menu') %>
 
 <main>
-    <div class="container" id="backgroundContainer" style="background-image: url('/resources/img/default-background.png');">
+    <div class="container" id="backgroundContainer">
         <head>
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         </head>
         <body>
             <div id="infoBox" class="box centered">
-                <div>
-                    <label for="latitude">Latitude:</label>
-                    <input type="text" id="latitude" placeholder="Enter latitude">
+                <div class="form-container">
+                    <!-- <label for="latitude">Latitude:</label> -->
+                    <input type="text" id="latitude" class="coordinate-input" placeholder="Latitude">
+                    <!-- <label for="longitude">Longitude:</label> -->
+                    <input type="text" id="longitude" class="coordinate-input" placeholder="Longitude">
+                    <button id="search" class="button-27-search">Search</button>
                 </div>
-                <div>
-                    <label for="longitude">Longitude:</label>
-                    <input type="text" id="longitude" placeholder="Enter longitude">
-                </div>
-                <button id="search" class="button-27">Search</button>
+                
+                <div class="spacer"></div>
+                
                 <div id="coordinates"></div>
 
                 <div id="location-info" class="location-details"></div>

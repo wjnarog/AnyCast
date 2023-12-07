@@ -2,10 +2,10 @@
 /* avatar page css */
 .circle-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: center; 
     align-items: center;
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
-    gap: 20px; /* Adjust the gap between buttons as needed */
+    flex-wrap: wrap; 
+    gap: 20px; 
 }
 
 .circle {
@@ -125,17 +125,29 @@ header {
 }
 
 #backgroundContainer {
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; 
-    width: 100%;
+    background: url(/resources/img/default-background.jpg);
+    background-size: cover;
+}
+
+.coordinate-input {
+    width: 18%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.spacer {
+    height: 20%; /* Adjust the height as needed */
 }
 
 body {
-    margin: 0; /* Remove default body margin */
-    padding: 0; /* Remove default body padding */
-    height: 100vh; /* Set the height of the body to cover the entire viewport */
+    margin: 0;
+    padding: 0px;
+    height: 100vh; 
+    overflow-x:auto ;
 }
 
 #infoBox {
@@ -143,7 +155,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Optionally, set the height to fill the viewport */
+    height: 90vh; 
 }
 
 /* .map-container {
@@ -194,4 +206,20 @@ body {
 .button-27:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+.button-27-search {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-27-search:hover {
+    background-color: #000000;
+    color: #FFFFFF;
 }
