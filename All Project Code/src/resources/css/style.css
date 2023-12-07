@@ -1,171 +1,308 @@
 
+
 /* avatar page css */
 .circle-container {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap; 
-    gap: 20px; 
-}
-
-.circle {
+    flex-wrap: wrap;
+    gap: 20px;
+ }
+ 
+ 
+ .circle {
     width: 100px;
     height: 100px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.circle img {
+ }
+ 
+ 
+ .circle img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-}
-
-/* overlay css code */
-/* .overlay {
+ }
+ 
+ 
+ /* overlay css code */
+ /* .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9); 
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
-}
-
-.blurry-container {
-    backdrop-filter: blur(8px); 
+ }
+ 
+ 
+ .blurry-container {
+    backdrop-filter: blur(8px);
     border-radius: 10px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.5); 
+    background: rgba(255, 255, 255, 0.5);
     text-align: center;
-} */
-
-
-/* footer partial css */
-footer {
-    position: fixed;
+ } */
+ 
+ 
+ 
+ 
+ /* footer partial css */
+ footer {
+ 
+ 
     bottom: 0;
     width: 100%;
     text-align: center;
     padding: 10px;
-    background-color: #f8f9fa; 
-    color: #495057; 
-}
-
-
-/* nav-bar partial css */
-header {
+    background-color: #ffffff;
+    color: #495057;
+ }
+ 
+ 
+ 
+ 
+ /* nav-bar partial css */
+ header {
     position: relative;
-}
-
-.navbar-nav {
+ }
+ 
+ 
+ .navbar-nav {
     display: flex;
     align-items: center;
-}
-
-.nav-item.ml-auto {
+ }
+ 
+ 
+ .nav-item.ml-auto {
     margin-left: auto;
-}
-
-.nav-link {
-    width: 40px; 
-    height: 40px; 
+ }
+ 
+ 
+ .nav-link {
+    width: 40px;
+    height: 40px;
     display: flex;
     /* padding: 5px; */
     align-items: center;
-}
-
-.navbar-nav .nav-item {
-    margin-right: 10px; 
-}
-
-.nav-link img {
-    width: 200%; 
-    height: 200%; 
+ }
+ 
+ 
+ .navbar-nav .nav-item {
+    margin-right: 10px;
+ }
+ 
+ 
+ .nav-link img {
+    width: 200%;
+    height: 200%;
     display: flex;
     align-items: center;
-}
-
-/* Home page css */
-.centered {
+ }
+ #loginbtn {
+    visibility: hidden;
+ }
+ /* #homebtn {
+    visibility: hidden;
+ } */
+ #logoutbtn {
+    /* margin-right: 5%; */
+    margin-left: 1050px;
+    color: #fc1723;
+    font-size: 15px;
+    font-weight: 600;
+    width: 70px;
+    background-color: rgb(255,255,255,0.45);
+    border-radius: 10px;
+    border: 3px solid rgb(253,255,255,0.4);;
+ }
+ /* Home page css */
+ .centered {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 10px;
-}
-
-#weather-icon img {
-    width: 100px; 
-    height: 100px; 
-}
-
-#temperature {
+ }
+ 
+ 
+ #weather-icon img {
+    width: 100px;
+    height: 100px;
+ }
+ 
+ 
+ #temperature {
     font-size: 24px;
     font-weight: bold;
-}
-
-#location-info {
+ }
+ 
+ 
+ #location-info {
     margin-bottom: 20px;
-}
-
-.box {
+ }
+ 
+ 
+ .avatar-container {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    max-width: 100%;
+    max-height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ 
+ .box {
+    margin-left: 400px;
+    margin-top: 50px;
+    margin-bottom: -100px;
+    position: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-}
-
-.location-details {
+    background-color: rgb(255,255,255,0.45);
+    border-radius: 10px;
+    border: 6px solid rgb(253,255,255,0.5);
+    width: 500px;
+    height: 500px;
+ }
+ 
+ 
+ .box-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+ 
+ 
+ .location-details {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#backgroundContainer {
-    background: url(/resources/img/default-background.jpg);
-    background-size: cover;
-}
-
-.coordinate-input {
-    width: 18%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-
-.spacer {
-    height: 20%; /* Adjust the height as needed */
-}
-
-body {
+ }
+ 
+ 
+ .back-video{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+ }
+ @media (min-aspect-ratio: 16/9) {
+    .back-video {
+        width: 100%;
+        height: auto;
+    }
+ }
+ @media (max-aspect-ratio: 16/9) {
+    .back-video {
+        width: auto;
+        height: 100%;
+    }
+ }
+ 
+ 
+ #backgroundContainer {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+ }
+ 
+ 
+ body {
     margin: 0;
     padding: 0px;
-    height: 100vh; 
+    height: 100vh;
     overflow-x:auto ;
-}
-
-#infoBox {
+ }
+ 
+ 
+ #infoBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh; 
-}
-
-/* .map-container {
+    height: 90vh;
+ }
+ 
+ .form-container {
+    position: center;
+    text-align: center;
+    border-radius: 6px;
+ }
+ 
+ /* .map-container {
     height: 400px;
-} */
-
-
-/* Randomize button css */
-/* found on website: https://getcssscan.com/css-buttons-examples */
-.button-27 {
+ } */
+ .popup {
+    margin-top: -10px;
+    width: 700px;
+    height: 80px;
+    background: rgb(255, 255, 255, 0.4);
+    border-radius: 6px;
+    border: 3px solid rgb(255,255,255,0.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+ 
+ 
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+ 
+ 
+ }
+ 
+ 
+ .open-popup{
+    visibility: visible;
+ }
+ 
+ 
+ .popup p {
+    position: relative;
+    display: inline-block;
+    vertical-align:middle;
+    width: 500px;
+    margin-top: 23px;
+    font-size: 30px;
+ }
+ .popup button {
+    display: inline-block;
+    vertical-align:middle;
+    flex-direction: row;
+    width: 10%;
+    margin-top: 23px;
+    padding: 10px 0;
+    background: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+ }
+ 
+ 
+ /* Randomize button css */
+ /* found on website: https://getcssscan.com/css-buttons-examples */
+ .button-27 {
   appearance: none;
   background-color: #000000;
   border: 2px solid #1A1A1A;
@@ -192,23 +329,27 @@ body {
   touch-action: manipulation;
   /* width: 100%; */
   will-change: transform;
-}
-
-.button-27:disabled {
+ }
+ 
+ 
+ .button-27:disabled {
   pointer-events: none;
-}
-
-.button-27:hover {
+ }
+ 
+ 
+ .button-27:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
-}
-
-.button-27:active {
+ }
+ 
+ 
+ .button-27:active {
   box-shadow: none;
   transform: translateY(0);
-}
-
-.button-27-search {
+ }
+ 
+ 
+ .button-27-search {
     background-color: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 10px;
@@ -217,9 +358,70 @@ body {
     font-weight: 600;
     padding: 10px 20px;
     transition: background-color 0.3s, color 0.3s;
-}
-
-.button-27-search:hover {
+ }
+ 
+ 
+ .button-27-search:hover {
     background-color: #000000;
     color: #FFFFFF;
-}
+ }
+ 
+ 
+ .button-27-search {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+ }
+ 
+ 
+ .button-27-search:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+ }
+ 
+ 
+ #infobox h1{
+    position: fixed;
+ }
+ 
+ 
+ .circle-container button-container {
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ 
+ .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ 
+ .button-container button {
+    justify-content: center;
+    text-decoration: none;
+    /* color: rgba(255, 255, 255, 0.8); */
+    /* background: rgb(145, 92, 182); */
+    border: none;
+    border-radius: 100px;
+    font-weight: normal;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+  }
+   .button-container button:hover {
+    /* color: rgba(255, 255, 255, 1); */
+    /* box-shadow: 0 0px 15px rgba(145, 92, 182, 0.4); */
+    transform: scale(1.30);
+  }
+   /* Add this if you want to remove the box shadow on the buttons initially
+  .button-container button {
+    transition: box-shadow 0.3s ease-in-out;
+  } */
+ 
+ 

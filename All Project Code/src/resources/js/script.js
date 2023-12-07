@@ -210,12 +210,20 @@ async function getLocationInfo(lat, lng) {
 
 function updateLocationInfo(locationInfo) {
     const locationInfoElement = document.getElementById('location-info');
-    locationInfoElement.innerHTML = `
-        <div id="location-details">
-            <p><strong> ${locationInfo.country}, ${locationInfo.state}, ${locationInfo.city}</strong></p>
-        </div>
-        <!-- Add more elements for additional information -->
-    `;
+    if (locationInfo && (locationInfo.country || locationInfo.state || locationInfo.city)) {
+        const countryHTML = locationInfo.country ? `<span>${locationInfo.country}</span>` : '';
+        const stateHTML = locationInfo.state && locationInfo.state !== 'undefined' ? `, <span>${locationInfo.state}</span>` : '';
+        const cityHTML = locationInfo.city && locationInfo.city !== 'undefined' ? `, <span>${locationInfo.city}</span>` : '';
+
+        locationInfoElement.innerHTML = `
+            <div id="location-details">
+                <p><strong>${countryHTML}${stateHTML}${cityHTML}</strong></p>
+            </div>
+            <!-- Add more elements for additional information -->
+        `;
+    } else {
+        locationInfoElement.innerHTML = `<p>Location information not available.</p>`;
+    }
 }
 
 function updateWeather(weatherData){

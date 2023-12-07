@@ -50,7 +50,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.redirect('/home');
+  res.redirect('/login');
 });
 
 app.get('/home', async (req, res) => {
