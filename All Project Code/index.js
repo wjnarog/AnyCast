@@ -80,7 +80,6 @@ app.get('/welcome', (req, res) => {
   res.json({ status: 'success', message: 'Welcome!' });
 });
 
-
 app.get('/login', async (req, res) => {
   let avatarImg = '/resources/img/ferret.png'; // Default avatar image
   if (req.session.user) {

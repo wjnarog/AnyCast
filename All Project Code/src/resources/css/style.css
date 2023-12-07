@@ -190,7 +190,11 @@ header {
 }
 
 #backgroundContainer {
+<<<<<<< HEAD
 
+=======
+    background: url(/resources/img/default-background.jpg);
+>>>>>>> main
     background-size: cover;
 }
 
@@ -204,7 +208,10 @@ header {
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 .spacer {
     height: 20%; /* Adjust the height as needed */
 }
@@ -335,6 +342,7 @@ body {
     background-color: #000000;
     color: #FFFFFF;
 }
+<<<<<<< HEAD
 
 #infobox h1{
     position: fixed;
@@ -373,3 +381,5 @@ body {
   .button-container button {
     transition: box-shadow 0.3s ease-in-out;
   } */
+=======
+>>>>>>> main

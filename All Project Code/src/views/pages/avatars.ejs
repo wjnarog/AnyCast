@@ -2,21 +2,19 @@
 <%- include ('../partials/menu') %>
 
 
+
 <main>
-  <div class="avatar-container" id="backgroundContainer" style="background-image: url('<%= avatarImgBackground %>');">
+    <div class="container" id="backgroundContainer" style="background-image: url('/resources/img/ferret-background.png');">
         <body>
             <div class="avatar-box" id="infoBox">
               <h1 style="text-align: center;">Choose Your Avatar</h1>
-              <form id="avatarForm" action="/avatars" method="post">
-                <input type="hidden" name="avatar" id="selectedAvatar" value=""/>
-                <div class="circle-container button-container">
-                  <ul>
-                  <button type="submit" name="avatar" id="ferret" value="1" data-background="/resources/img/ferret-background.jpg" style="background: url('/resources/img/ferret.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
-                  <button type="submit" name="avatar" id="buffalo" value="2" data-background="/resources/img/buffalo-background.jpg" style="background: url('/resources/img/buffalo.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
-                  <button type="submit" name="avatar" id="frog" value="3" data-background="/resources/img/Iguana-background.jpg" style="background: url('/resources/img/Iguana.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
-                  <button type="submit" name="avatar" id="khola" value="4" data-background="/resources/img/koala-background.jpg" style="background: url('/resources/img/koala.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
-                  <button type="submit" name="avatar" id="bird" value="5" data-background="/resources/img/macaw-background.jpg" style="background: url('/resources/img/macaw.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
-                </ul>
+              <form action="/avatars" method="post">
+                <div class="circle-container">
+                  <button type="submit" name="avatar" value="1" data-background="/resources/img/ferret-background.jpg" style="background: url('/resources/img/ferret.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="2" data-background="/resources/img/buffalo-background.jpg" style="background: url('/resources/img/buffalo.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="3" data-background="/resources/img/Iguana-background.jpg" style="background: url('/resources/img/Iguana.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="4" data-background="/resources/img/koala-background.jpg" style="background: url('/resources/img/koala.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
+                  <button type="submit" name="avatar" value="5" data-background="/resources/img/macaw-background.jpg" style="background: url('/resources/img/macaw.png') center/cover no-repeat; width: 150px; height: 150px; border: none;"></button>
                 </div>
             </form>
             </div>
