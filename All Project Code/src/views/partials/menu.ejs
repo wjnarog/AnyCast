@@ -1,0 +1,60 @@
+<header>
+  <nav class="navbar navbar-expand-sm border-bottom">
+      <div class="container">
+          <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbar-collapse"
+              aria-controls="navbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+              <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/home" id="homebtn">Home</a>
+                  </li>
+                  <li>
+                      <a class="nav-link" href="/login" id="loginbtn">Login</a>
+                  </li>
+                  <li>
+                      <a class="nav-link" href="/"></a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="/login" id="logoutbtn" onclick="openPopup()">Logout</a>
+                  </li>
+              </ul>
+
+              <div class="nav-item ml-auto"> <!-- Use ml-auto instead of me-1 -->
+                  <a class="nav-link" href="/avatars">
+                    <img src="<%= avatarImg %>" alt="Avatar Image">
+                  </a>
+              </div>
+
+              <div class="popup" id="popup">
+                <!-- <img src="/resources/img/download.png"> -->
+                <!-- <h2>Bye Bye!</h2> -->
+                <p>You've Been Successfully Logged Out</p>
+                <button type="button" style="float: right;" onclick="closePopup()">X</button>
+              </div>
+
+            <script>
+                let popup = document.getElementById("popup");
+
+                function openPopup(){
+                    popup.classList.add("open-popup")
+                    return false;
+                }
+                function closePopup(){
+                    popup.classList.remove("open-popup")
+                }
+            </script>
+
+
+
+          </div>
+      </div>
+  </nav>
+</header>
