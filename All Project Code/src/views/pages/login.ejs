@@ -1,107 +1,134 @@
 <%- include ('../partials/head') %>
 <%- include ('../partials/menu') %>
 
+
 <main>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/resources/css/style2.css">
-  </head>
-    <body id="Login-body">
-      <form action="/login" method="POST">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="/resources/css/style2.css">
+ </head>
+   <body id="Login-body">
+     <form action="/login" method="POST">
 
-        <div class="login-container">
-          <div class="box-login">
 
-            <div class="login-box" id="login">
+       <div class="login-container">
+         <div class="box-login">
 
-              <div class="login-header">
-                <h1> Login </h1>
-              </div>
 
-              <div class="loginput-group">
+           <div class="login-box" id="login">
 
-                <div class="loginput-field">
-                  <input type="text" class="loginput-box" id="username" name="username" required>
-                  <label for="username">Username</label>
-                </div>
 
-                <div class="loginput-field">
-                  <input type="password" class="loginput-box" id="password" name="password" required>
-                  <label for="password">Password</label>
-                </div>
+             <div class="login-header">
+               <h1> Login </h1>
+             </div>
 
-                <div class="loginput-field">
-                  <input type="submit" class="loginput-submit" value="Sign In">
-                </div>
 
-                <p>Don't have an account? <a href="/register">Register</a></p>
+             <div class="loginput-group">
 
-              </div>
 
-            </div>
-      </form>
-  <!-- <------------------------------- register -------------------------------->
-          <!-- <form action="/register" method="POST">  
-            <div class="register-box" id="register">
+               <div class="loginput-field">
+                 <input type="text" class="loginput-box" id="username" name="username" required>
+                 <label for="username">Username</label>
+               </div>
 
-              <div class="login-header">
-                <h1> Register </h1>
-              </div>
 
-              <div class="loginput-group">
+               <div class="loginput-field">
+                 <input type="password" class="loginput-box" id="password" name="password" required>
+                 <label for="password">Password</label>
+               </div>
 
-                <div class="loginput-field">
-                  <input type="text" class="loginput-box" id="regUN" required>
-                  <label for="regUN">Username</label>
-                </div>
 
-                <div class="loginput-field">
-                  <input type="text" class="loginput-box" id="regEmail" required>
-                  <label for="regEmail">Email</label>
-                </div>
+               <div class="loginput-field">
+                 <input type="submit" class="loginput-submit" value="Sign In">
+               </div>
 
-                <div class="loginput-field">
-                  <input type="password" class="loginput-box" id="regPass" required>
-                  <label for="regPass">Password</label>
-                </div>
 
-                <div class="loginput-field">
-                  <input type="submit" class="loginput-submit" value="Sign Up">
-                </div>
-              </div> -->
+        
+               <p>Don't have an account? <a href="/register">Register</a></p>
 
-            <!-- </div> -->
-          <!-- </form> -->
-            <!-- /*<-------------------------- Switch -------------------------->
-            <!-- <div class="switch">
-              <a href="#" class="login" onclick="login()">Login</a>
-              <a href="#" class="register" onclick="register()">Register</a>
-              <div class="sbtn-active" id="sbtn"></div>
-            </div>
-          </div>
-        </div>
 
-      <script>
-        var x = document.getElementById('login')
-        var y = document.getElementById('register')
-        var z = document.getElementById('sbtn')
 
-        function login()
-        {
-          x.style.left = "27px"
-          y.style.left = "350px"
-          z.style.left = "0px"
-        }
-        function register()
-        {
-          x.style.left = "-350px"
-          y.style.left = "25px"
-          z.style.left = "150px"
-        }
-      </script> -->
-    </body>
-  </main>
 
-  <%- include ('../partials/footer') %>
+             </div>
+
+
+           </div>
+     </form>
+ <!-- <------------------------------- register -------------------------------->
+         <!-- <form action="/register" method="POST"> 
+           <div class="register-box" id="register">
+
+
+             <div class="login-header">
+               <h1> Register </h1>
+             </div>
+
+
+             <div class="loginput-group">
+
+
+               <div class="loginput-field">
+                 <input type="text" class="loginput-box" id="regUN" required>
+                 <label for="regUN">Username</label>
+               </div>
+
+
+               <div class="loginput-field">
+                 <input type="text" class="loginput-box" id="regEmail" required>
+                 <label for="regEmail">Email</label>
+               </div>
+
+
+               <div class="loginput-field">
+                 <input type="password" class="loginput-box" id="regPass" required>
+                 <label for="regPass">Password</label>
+               </div>
+
+
+               <div class="loginput-field">
+                 <input type="submit" class="loginput-submit" value="Sign Up">
+               </div>
+             </div> -->
+
+
+           <!-- </div> -->
+         <!-- </form> -->
+           <!-- /*<-------------------------- Switch -------------------------->
+           <!-- <div class="switch">
+             <a href="#" class="login" onclick="login()">Login</a>
+             <a href="#" class="register" onclick="register()">Register</a>
+             <div class="sbtn-active" id="sbtn"></div>
+           </div>
+         </div>
+       </div>
+
+
+     <script>
+       var x = document.getElementById('login')
+       var y = document.getElementById('register')
+       var z = document.getElementById('sbtn')
+
+
+       function login()
+       {
+         x.style.left = "27px"
+         y.style.left = "350px"
+         z.style.left = "0px"
+       }
+       function register()
+       {
+         x.style.left = "-350px"
+         y.style.left = "25px"
+         z.style.left = "150px"
+       }
+     </script> -->
+   </body>
+ </main>
+
+
+ <%- include ('../partials/footer') %>
+
+
+
