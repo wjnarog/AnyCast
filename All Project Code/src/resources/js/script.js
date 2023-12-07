@@ -46,6 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+const searchButton = document.getElementById('search');
+const latitudeInput = document.getElementById('latitude');
+const longitudeInput = document.getElementById('longitude');
+
+searchButton.addEventListener('click', function () {
+    const enteredLat = parseFloat(latitudeInput.value);
+    const enteredLng = parseFloat(longitudeInput.value);
+
+    if (!isNaN(enteredLat) && !isNaN(enteredLng)) {
+        getWeatherInfo(enteredLat, enteredLng);
+    } else {
+        document.getElementById('errorMessage').innerText = 'Invalid coordinates. Please enter valid numerical values.';
+    }
+});
+
 async function generateRandomCoordinates() {
     let attempts = 0;
     const maxAttempts = 5; // adjust the number of attempts as needed
@@ -60,7 +75,7 @@ async function generateRandomCoordinates() {
             weatherData = await getWeatherData(currentLat, currentLng);
 
             // If weather data is available, break out of the loop
-            if (weatherData) {
+            if (weatherData && weatherData.country !== 'undefined' && weatherData.state !== 'undefined') {
                 // Update the button text
                 generateButton.innerText = 'Back to Boulder';
 
@@ -156,11 +171,11 @@ async function generateLandCoordinates() {
 }
 
 // Function to check if coordinates are on land using iswater.io
-async function isOnLand(lat, lng) {
-    const response = await fetch(`https://isitwater-com.p.rapidapi.com/?latitude=${lat}&longitude=${lng}&rapidapi-key=3a932eef1fmsh42c524bd7674ff8p120ac4jsn43ea7bf6057c`);
-    const data = await response.json();
-    return !data.water;
-}
+// async function isOnLand(lat, lng) {
+//     const response = await fetch(`https://isitwater-com.p.rapidapi.com/?latitude=${lat}&longitude=${lng}&rapidapi-key=3a932eef1fmsh42c524bd7674ff8p120ac4jsn43ea7bf6057c`);
+//     const data = await response.json();
+//     return !data.water;
+// }
 
 function getRandomCoordinates() {
     const lat = Math.random() * 180 - 90; // Latitude from -90 to 90
@@ -195,12 +210,20 @@ async function getLocationInfo(lat, lng) {
 
 function updateLocationInfo(locationInfo) {
     const locationInfoElement = document.getElementById('location-info');
-    locationInfoElement.innerHTML = `
-        <div id="location-details">
-            <p><strong> ${locationInfo.country}, ${locationInfo.state}, ${locationInfo.city}</strong></p>
-        </div>
-        <!-- Add more elements for additional information -->
-    `;
+    if (locationInfo && (locationInfo.country || locationInfo.state || locationInfo.city)) {
+        const countryHTML = locationInfo.country ? `<span>${locationInfo.country}</span>` : '';
+        const stateHTML = locationInfo.state && locationInfo.state !== 'undefined' ? `, <span>${locationInfo.state}</span>` : '';
+        const cityHTML = locationInfo.city && locationInfo.city !== 'undefined' ? `, <span>${locationInfo.city}</span>` : '';
+
+        locationInfoElement.innerHTML = `
+            <div id="location-details">
+                <p><strong>${countryHTML}${stateHTML}${cityHTML}</strong></p>
+            </div>
+            <!-- Add more elements for additional information -->
+        `;
+    } else {
+        locationInfoElement.innerHTML = `<p>Location information not available.</p>`;
+    }
 }
 
 function updateWeather(weatherData){
