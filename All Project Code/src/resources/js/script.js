@@ -46,6 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+const searchButton = document.getElementById('search');
+const latitudeInput = document.getElementById('latitude');
+const longitudeInput = document.getElementById('longitude');
+
+searchButton.addEventListener('click', function () {
+    const enteredLat = parseFloat(latitudeInput.value);
+    const enteredLng = parseFloat(longitudeInput.value);
+
+    if (!isNaN(enteredLat) && !isNaN(enteredLng)) {
+        getWeatherInfo(enteredLat, enteredLng);
+    } else {
+        document.getElementById('errorMessage').innerText = 'Invalid coordinates. Please enter valid numerical values.';
+    }
+});
+
 async function generateRandomCoordinates() {
     let attempts = 0;
     const maxAttempts = 5; // adjust the number of attempts as needed
